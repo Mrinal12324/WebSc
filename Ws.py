@@ -2,15 +2,15 @@ import time
 from  bs4 import BeautifulSoup
 import requests
 
-
+url='https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation='
 print('Put in somes skills')
 uf_skill = input('>')
 Ufskill=uf_skill
 Ufskill=Ufskill.lower()
 print(f'Filtering out {uf_skill}')
 def find_jobs():
-        html_requ=requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation=').text
-        soup = BeautifulSoup(html_requ,'lxml')
+        html_req=requests.get(url).text
+        soup = BeautifulSoup(html_req,'lxml')
         jobs = soup.find_all('li',class_='clearfix job-bx wht-shd-bx')
         for index,job in enumerate(jobs):
                 publish_d=job.find('span',class_='sim-posted').span.text
