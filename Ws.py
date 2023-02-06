@@ -33,3 +33,12 @@ if __name__ == '__main__':
                 time_wait=10
                 print(f'Waiting...{time_wait}mins Please')
                 time.sleep(time_wait* 60)
+'''
+with open(f'{index}.txt','w') as f:
+f.write(f
+Company Name: {comp_name.strip()}
+Required Skills: {skills.strip()}
+More Info:{more_info}
+\n)
+print(f'File saved in :{index}')
+'''
