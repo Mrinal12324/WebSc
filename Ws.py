@@ -1,6 +1,8 @@
 import time
 from  bs4 import BeautifulSoup
 import requests
+from csv import writer
+
 
 url='https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation='
 print('Put in somes skills')
@@ -18,15 +20,16 @@ def find_jobs():
                         comp_name = job.find('h3',class_='joblist-comp-name').text.replace('  ','')
                         skills = job.find('span',class_='srp-skills').text.replace('  ','')
                         more_info=job.header.h2.a['href']
-                        if uf_skill and Ufskill not in skills:
-                                with open(f'{index}.txt','w') as f:
-
+                        with open('jobs.csv','w',encoding='utf8',newline='') as f:
+                                thewrit=writer(f)
+                                header=['Company Name','Required Skills','More Info']
+                                thewrit.writerow(header)
+                                if uf_skill and Ufskill not in skills:
                                         f.write(f'''
-                                        Company Name: {comp_name.strip()}
-                                        Required Skills: {skills.strip()}
-                                        More Info:{more_info}
-                                        \n''')
-                                print(f'File saved in :{index}')
+                                                Company Name: {comp_name.strip()}
+                                                Required Skills: {skills.strip()}
+                                                More Info:{more_info}
+                                                \n''')
 if __name__ == '__main__':
         while True:
                 find_jobs()
